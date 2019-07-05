@@ -1,0 +1,25 @@
+{
+  "name": "marvelsite",
+  "version": "1.0.0",
+  "description": "静态网页练习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SHUAXINDIARY/MarvelSite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SHUAXINDIARY/MarvelSite/issues"
+  },
+  "homepage": "https://github.com/SHUAXINDIARY/MarvelSite#readme",
+  "dependencies": {
+    "del": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-less": "^4.0.1",
+    "jquery": "^3.4.1"
+  }
+}
