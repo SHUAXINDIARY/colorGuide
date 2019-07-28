@@ -57,23 +57,30 @@ body .con .footer {
   width: 100%;
 }
 @media screen and (max-width: 480px) {
+  .bottom {
+    display: none !important;
+  }
+  .top li {
+    margin: 10px;
+  }
   .middle li {
     font-size: 15px !important;
   }
   .left {
-    bottom: 0 !important;
+    top: 0 !important;
     left: 25% !important;
   }
   .right {
-    bottom: 0 !important;
+    top: 0 !important;
     right: 25% !important;
   }
   .container {
     width: 90vw !important;
-    height: 70vh !important;
+    height: 50vh !important;
     margin: 0 auto;
+    padding: 10px;
   }
-  .footer{
-    position: relative;
-    bottom: 0;
+  .footer {
+    display: none;
+  }
 }

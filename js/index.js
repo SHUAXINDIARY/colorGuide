@@ -79,4 +79,3 @@ dom.right.onclick = function () {
     features.next();
 };
 
-
