@@ -1,7 +1,5 @@
 node_modules
-css/
 *.json
 *.json
-*.js
 README.md
 src/
