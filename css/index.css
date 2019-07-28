@@ -10,48 +10,64 @@ body .btn {
   cursor: pointer;
 }
 body .left {
-  padding-left: 7%;
+  left: 5%;
 }
 body .right {
-  right: 0;
-  padding-right: 7%;
+  right: 5%;
 }
 body .con {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
 }
 body .con .container {
   background-color: #ffffff;
   border-radius: 30px;
-  width: 60%;
+  width: 70%;
   height: 500px;
   margin: 0 auto;
   box-shadow: 0 15px 15px 0 rgba(15, 37, 64, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 body .con .container ul {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 5%;
 }
 body .con .container .top li {
   height: 200px;
-  width: 10%;
+  width: 95px;
   border-radius: 50px;
 }
 body .con .container .middle li {
-  font-size: 15px;
+  font-size: 20px;
 }
 body .con .container .bottom li {
   height: 95px;
-  width: 10%;
+  width: 95px;
   border-radius: 50px;
 }
 body .con .footer {
   letter-spacing: 10px;
   width: 100%;
+}
+@media screen and (max-width: 480px) {
+  .middle li {
+    font-size: 5px !important;
+  }
+  .left {
+    left: 3% !important;
+  }
+  .right {
+    right: 3% !important;
+  }
+  .container {
+    width: 100vw !important;
+    margin: 0 auto;
+  }
 }
