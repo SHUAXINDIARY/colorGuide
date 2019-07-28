@@ -70,7 +70,10 @@ body .con .footer {
   }
   .container {
     width: 90vw !important;
-    height: 600px !important;
+    height: 70vh !important;
     margin: 0 auto;
   }
+  .footer{
+    position: relative;
+    bottom: 0;
 }
