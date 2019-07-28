@@ -61,11 +61,11 @@ body .con .footer {
     font-size: 15px !important;
   }
   .left {
-    top: 0 !important;
+    bottom: 0 !important;
     left: 25% !important;
   }
   .right {
-    top: 0 !important;
+    bottom: 0 !important;
     right: 25% !important;
   }
   .container {
