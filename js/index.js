@@ -97,7 +97,6 @@ const features = {
         domName.forEach(
             (item, index) => {
                 item.style.backgroundColor = globalVal.colorList[globalVal.pages][index];
-                // this.check(item, index);
             }
         );
     },
@@ -107,18 +106,19 @@ const features = {
             (item, index) => {
                 item.innerHTML = globalVal.colorList[globalVal.pages][index];
                 item.style.color = globalVal.colorList[globalVal.pages][index];
-                // this.check(item, index);
             }
         );
     },
+    // 提示窗口
     showHint(str) {
         dom.hint.style.display = "block";
         dom.hint.innerHTML = str;
+        // 关闭提示窗口
         setTimeout(function () {
             dom.hint.style.display = 'none';
         }, 2000);
     },
-    // 渲染当前页
+    // 渲染当前页码
     currentPage() {
         dom.footer.innerHTML = `第${globalVal.pages + 1}页`;
     }
