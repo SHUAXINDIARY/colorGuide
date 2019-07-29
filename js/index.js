@@ -5,15 +5,16 @@ const dom = {
     colorNameLis: document.querySelectorAll('#colorName>li'),
     left: document.querySelector('#left'),
     right: document.querySelector('#right'),
-    footer: document.querySelector('#footer')
+    footer: document.querySelector('#footer'),
+    hint: document.querySelector('#hint'),
 };
 // 颜色列表
 const globalVal = {
     pages: 0,
     colorList: [
-        ["#fef3d3","#eccfbf","#c4d3d6","#d4dbe5"],
-        ["#7ec384","#3f7857","#45625d","#6aa5a9"],
-        ["#8b776e","#453c51","#9c94b9","#cbd0e3"],
+        ["#fef3d3", "#eccfbf", "#c4d3d6", "#d4dbe5"],
+        ["#7ec384", "#3f7857", "#45625d", "#6aa5a9"],
+        ["#8b776e", "#453c51", "#9c94b9", "#cbd0e3"],
         ["#6f5f5f", "#fec397", "#d28a7c", "#6c8b8d"],
         ["#E1E6E6", "#C4DAE6", "#92C8E0", "#67ABD6", "#C3B0D6"],
         ["#eff1fe", "#bcc2d7", "#8895b1", "#546c8c", "#194568"],
@@ -39,7 +40,8 @@ const features = {
     },
     next() {
         if (globalVal.pages + 1 == globalVal.colorList.length) {
-            alert('最后一张了');
+            // alert('最后一张了');
+            this.showHint('最后一张了');
         } else {
             globalVal.pages++;
             this.init();
@@ -47,7 +49,8 @@ const features = {
     },
     last() {
         if (globalVal.pages == 0) {
-            alert('这是第一张了');
+            // alert('这是第一张了');
+            this.showHint('这是第一张');
         } else {
             globalVal.pages--;
             this.init();
@@ -59,7 +62,7 @@ const features = {
         domName.forEach(
             (item, index) => {
                 item.style.backgroundColor = globalVal.colorList[globalVal.pages][index];
-                this.check(item,index);
+                this.check(item, index);
             }
         );
     },
@@ -69,18 +72,25 @@ const features = {
             (item, index) => {
                 item.innerHTML = globalVal.colorList[globalVal.pages][index];
                 item.style.color = globalVal.colorList[globalVal.pages][index];
-                this.check(item,index);
+                this.check(item, index);
             }
         );
     },
     // 检查颜色列表数量，决定页面显示结构
-    check(item,index) {
+    check(item, index) {
         let length = globalVal.colorList[globalVal.pages].length;
         if (index == length) {
             item.style.display = "none";
         } else {
             item.style.display = "block";
         }
+    },
+    showHint(str) {
+        dom.hint.style.display = "block";
+        dom.hint.innerHTML = str;
+        setTimeout(function () {
+            dom.hint.style.display='none';
+        }, 2000);
     },
     // 渲染当前页
     currentPage() {
