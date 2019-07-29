@@ -33,11 +33,12 @@ const globalVal = {
 const features = {
     // 初始化
     init() {
-        if (globalVal.pages == 0) {
+        if (globalVal.pages == 0 && dom.conOne.childNodes.length ==1) {
             // 初始化第一页dom
             this.renderDom(dom.conOne);
             this.renderDom(dom.conTwo);
             this.renderDom(dom.colorName);
+
         } else {
             let dom2 = {
                 conOneLis: document.querySelectorAll('#conOne>li'),
