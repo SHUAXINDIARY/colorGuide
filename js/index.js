@@ -1,8 +1,8 @@
 // 获取操作dom
 const dom = {
-    conOneLis: document.querySelectorAll('#conOne>li'),
-    conTwoLis: document.querySelectorAll('#conTwo>li'),
-    colorNameLis: document.querySelectorAll('#colorName>li'),
+    conOne: document.querySelector('#conOne'),
+    conTwo: document.querySelector('#conTwo'),
+    colorName: document.querySelector('#colorName'),
     left: document.querySelector('#left'),
     right: document.querySelector('#right'),
     footer: document.querySelector('#footer'),
@@ -30,39 +30,81 @@ const globalVal = {
         ["#80beaf", "#b3ddd1", "#d1dce2", "#f5b994", "#ee9c6c"],
     ],
 }
-// 业务方法
 const features = {
+    // 初始化
     init() {
-        this.fillColor(dom.conOneLis);
-        this.fillColor(dom.conTwoLis);
-        this.fillColorName(dom.colorNameLis);
+        this.renderDom(dom.conOne);
+        this.renderDom(dom.conTwo);
+        this.renderDom(dom.colorName);
+        let dom2 = {
+            conOneLis: document.querySelectorAll('#conOne>li'),
+            conTwoLis: document.querySelectorAll('#conTwo>li'),
+            colorNameLis: document.querySelectorAll('#colorName>li'),
+        };
+        console.log(dom2.conOneLis.length);
+        this.fillColor(dom2.conOneLis);
+        this.fillColor(dom2.conTwoLis);
+        this.fillColorName(dom2.colorNameLis);
+        this.currentPage();
+    },
+    // 重新渲染
+    PageUp() {
+        let dom2 = {
+            conOneLis: document.querySelectorAll('#conOne>li'),
+            conTwoLis: document.querySelectorAll('#conTwo>li'),
+            colorNameLis: document.querySelectorAll('#colorName>li'),
+        };
+        // 销毁旧dom
+        for (let i = 0; i < dom2.conOneLis.length; i++) {
+            dom.conOne.removeChild(dom2.conOneLis[i]);
+            dom.conTwo.removeChild(dom2.conTwoLis[i]);
+            dom.colorName.removeChild(dom2.colorNameLis[i]);
+        };
+        // 渲染新dom
+        this.renderDom(dom.conOne);
+        this.renderDom(dom.conTwo);
+        this.renderDom(dom.colorName);
+        // 填充颜色
+        this.fillColor(document.querySelectorAll('#conOne>li'));
+        this.fillColor(document.querySelectorAll('#conTwo>li'));
+        this.fillColorName(document.querySelectorAll('#colorName>li'));
         this.currentPage();
     },
     next() {
         if (globalVal.pages + 1 == globalVal.colorList.length) {
-            // alert('最后一张了');
             this.showHint('最后一张了');
         } else {
             globalVal.pages++;
-            this.init();
+            this.PageUp();
         };
     },
     last() {
         if (globalVal.pages == 0) {
-            // alert('这是第一张了');
             this.showHint('这是第一张');
         } else {
             globalVal.pages--;
-            this.init();
+            this.PageUp();
         };
 
+    },
+    // 根据颜色数组动态生成li
+    renderDom(domName) {
+        let lis = [];
+        for (let i in globalVal.colorList[globalVal.pages]) {
+            lis.push(document.createElement('li'));
+        };
+        lis.forEach(
+            (item, index) => {
+                domName.appendChild(item);
+            }
+        );
     },
     // 填充颜色
     fillColor(domName) {
         domName.forEach(
             (item, index) => {
                 item.style.backgroundColor = globalVal.colorList[globalVal.pages][index];
-                this.check(item, index);
+                // this.check(item, index);
             }
         );
     },
@@ -72,24 +114,15 @@ const features = {
             (item, index) => {
                 item.innerHTML = globalVal.colorList[globalVal.pages][index];
                 item.style.color = globalVal.colorList[globalVal.pages][index];
-                this.check(item, index);
+                // this.check(item, index);
             }
         );
-    },
-    // 检查颜色列表数量，决定页面显示结构
-    check(item, index) {
-        let length = globalVal.colorList[globalVal.pages].length;
-        if (index == length) {
-            item.style.display = "none";
-        } else {
-            item.style.display = "block";
-        }
     },
     showHint(str) {
         dom.hint.style.display = "block";
         dom.hint.innerHTML = str;
         setTimeout(function () {
-            dom.hint.style.display='none';
+            dom.hint.style.display = 'none';
         }, 2000);
     },
     // 渲染当前页
