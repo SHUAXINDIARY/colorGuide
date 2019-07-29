@@ -33,41 +33,33 @@ const globalVal = {
 const features = {
     // 初始化
     init() {
-        this.renderDom(dom.conOne);
-        this.renderDom(dom.conTwo);
-        this.renderDom(dom.colorName);
-        let dom2 = {
-            conOneLis: document.querySelectorAll('#conOne>li'),
-            conTwoLis: document.querySelectorAll('#conTwo>li'),
-            colorNameLis: document.querySelectorAll('#colorName>li'),
-        };
-        console.log(dom2.conOneLis.length);
-        this.fillColor(dom2.conOneLis);
-        this.fillColor(dom2.conTwoLis);
-        this.fillColorName(dom2.colorNameLis);
-        this.currentPage();
-    },
-    // 重新渲染
-    PageUp() {
-        let dom2 = {
-            conOneLis: document.querySelectorAll('#conOne>li'),
-            conTwoLis: document.querySelectorAll('#conTwo>li'),
-            colorNameLis: document.querySelectorAll('#colorName>li'),
-        };
-        // 销毁旧dom
-        for (let i = 0; i < dom2.conOneLis.length; i++) {
-            dom.conOne.removeChild(dom2.conOneLis[i]);
-            dom.conTwo.removeChild(dom2.conTwoLis[i]);
-            dom.colorName.removeChild(dom2.colorNameLis[i]);
-        };
-        // 渲染新dom
-        this.renderDom(dom.conOne);
-        this.renderDom(dom.conTwo);
-        this.renderDom(dom.colorName);
+        if (globalVal.pages == 0) {
+            // 初始化第一页dom
+            this.renderDom(dom.conOne);
+            this.renderDom(dom.conTwo);
+            this.renderDom(dom.colorName);
+        } else {
+            let dom2 = {
+                conOneLis: document.querySelectorAll('#conOne>li'),
+                conTwoLis: document.querySelectorAll('#conTwo>li'),
+                colorNameLis: document.querySelectorAll('#colorName>li'),
+            };
+            // 销毁旧dom
+            for (let i = 0; i < dom2.conOneLis.length; i++) {
+                dom.conOne.removeChild(dom2.conOneLis[i]);
+                dom.conTwo.removeChild(dom2.conTwoLis[i]);
+                dom.colorName.removeChild(dom2.colorNameLis[i]);
+            };
+            // 渲染新dom
+            this.renderDom(dom.conOne);
+            this.renderDom(dom.conTwo);
+            this.renderDom(dom.colorName);
+        }
         // 填充颜色
         this.fillColor(document.querySelectorAll('#conOne>li'));
         this.fillColor(document.querySelectorAll('#conTwo>li'));
         this.fillColorName(document.querySelectorAll('#colorName>li'));
+        // 初始化页码
         this.currentPage();
     },
     next() {
@@ -75,7 +67,7 @@ const features = {
             this.showHint('最后一张了');
         } else {
             globalVal.pages++;
-            this.PageUp();
+            this.init();
         };
     },
     last() {
@@ -83,7 +75,7 @@ const features = {
             this.showHint('这是第一张');
         } else {
             globalVal.pages--;
-            this.PageUp();
+            this.init();
         };
 
     },
