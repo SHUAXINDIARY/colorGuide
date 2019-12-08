@@ -28,12 +28,19 @@ const globalVal = {
         ["#86e3ce", "#d0e6a5", "#ffdd95", "#fa897b", "#ccabda"],
         ["#ccabda", "#8474a1", "#6ec5cc", "#08979f", "#065a5c"],
         ["#80beaf", "#b3ddd1", "#d1dce2", "#f5b994", "#ee9c6c"],
+        ["#da2864", "#ec6091", "#f2a7be", "#9ae2e1", "#16a5a3"],
+        ["#001b48", "#02457a", "#018abe", "#97cadb", "#d6e7ee"],
+        ["#a5cdcd", "#eeedeb", "#d1d2d4", "#d9ebeb", "#242d36", "#d5c4b4"],
+        // ["", "", "", "", "", ""],
+        // ["", "", "", "", "", ""],
+        // ["", "", "", "", "", ""],
+        // ["", "", "", "", "", ""],
     ],
 }
 const features = {
     // 初始化
     init() {
-        if (globalVal.pages == 0 && dom.conOne.childNodes.length ==1) {
+        if (globalVal.pages == 0 && dom.conOne.childNodes.length == 1) {
             // 初始化第一页dom
             this.renderDom(dom.conOne);
             this.renderDom(dom.conTwo);
