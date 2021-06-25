@@ -1,5 +1,5 @@
 node_modules
-*.json
-*.json
-README.md
-src/
+.DS_Store
+dist
+dist-ssr
+*.local
